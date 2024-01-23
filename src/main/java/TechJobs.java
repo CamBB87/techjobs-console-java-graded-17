@@ -1,6 +1,6 @@
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashMap;
-import java.util.Map;
 import java.util.Scanner;
 
 /**
@@ -45,6 +45,8 @@ public class TechJobs {
                     ArrayList<String> results = JobData.findAll(columnChoice);
 
                     System.out.println("\n*** All " + columnChoices.get(columnChoice) + " Values ***");
+
+                    Collections.sort(results);
 
                     // Print list of skills, employers, etc
                     for (String item : results) {
@@ -120,6 +122,25 @@ public class TechJobs {
     // Print a list of jobs
     private static void printJobs(ArrayList<HashMap<String, String>> someJobs) {
 
-        System.out.println("printJobs is not implemented yet");
+        if (someJobs.isEmpty()) {
+            String output = "No Results";
+            System.out.printf(output);
+        } else {
+            String output = "\n";
+            for (int i = 0; i < someJobs.size(); i++) {
+                if (i == 0) {
+                    output += "*****\n";
+                } else {
+                    output += "\n\n*****\n";
+                }
+                HashMap<String, String> dropDownL = someJobs.get(i);
+                for (String key : dropDownL.keySet()) {
+                    output += key + ": " + dropDownL.get(key) + "\n";
+                }
+                output += "*****";
+            }
+            System.out.println(output);
+        }
+
     }
 }
